@@ -241,3 +241,95 @@ Player 1: WASD
 Player 2: Arrow Keys
 ```
 
+---
+
+## Local Storage
+
+#### Snake Ultimate uses localStorage for:
+
+- Best scores
+- Save slots
+- Settings
+- Missions
+- Achievements
+- Leaderboard
+- Custom maps
+- Last replay
+
+This allows progress to remain saved in the browser without a backend.
+
+---
+
+## How to Run Locally
+
+### Option 1: Open directly
+
+#### Open:
+```txt
+index.html
+```
+in your browser.
+
+### Option 2: Run with a local server
+
+#### From the project folder:
+```bash
+python -m http.server 5500
+```
+
+#### Then open:
+```txt
+http://localhost:5500
+```
+
+---
+
+## Key Engineering Concepts Used
+
+#### This project demonstrates:
+
+- Canvas-based rendering
+- Game loop architecture
+- Collision detection
+- State management
+- Input handling
+- Local persistence
+- Modular JavaScript
+- Replay system design
+- UI state synchronization
+- Responsive UI experimentation
+- Debugging and large-file maintenance
+
+---
+
+## Roadmap / Future Improvements
+
+#### Planned improvements:
+
+- Fully redesigned mobile-first version
+- Sound effects and audio settings
+- Multiple saved replays
+- Replay export/import codes
+- More boss attack patterns
+- More campaign chapters
+- Online leaderboard
+- Better accessibility options
+- More themes and visual effects
+- Cleaner file splitting for long-term maintainability
+
+---
+
+## Current Status
+
+Desktop version: Stable and portfolio-ready
+Mobile version: Experimental support added
+Replay system: Classic and Time Attack supported
+AI Demo: Complete
+Map Editor: Complete
+
+---
+
+## Author
+
+Built by Amber Mahajan
+
