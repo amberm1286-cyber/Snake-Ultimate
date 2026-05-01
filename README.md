@@ -1,10 +1,10 @@
 # Snake Ultimate — Advanced Web-Based Snake Game
 
-**Snake Ultimate** is a polished browser-based Snake game built with **HTML5 Canvas, CSS, and vanilla JavaScript**.
+**Snake Ultimate** is an advanced browser-based Snake game built with **HTML5 Canvas, CSS, and vanilla JavaScript**.
 
-What started as a classic Snake game has been expanded into a full arcade-style project featuring multiple game modes, AI Demo mode, replay playback, custom map editing, achievements, missions, campaign progression, local save data, and a premium desktop UI.
+Snake Ultimate expands the classic Snake concept into a desktop-focused arcade game with multiple modes, AI-assisted demo playback, a replay system, custom map editing, achievements, missions, and local save data.
 
-> This project is designed as a portfolio-level JavaScript game that demonstrates game-loop architecture, Canvas rendering, state management, replay systems, UI design, and localStorage persistence.
+> This project demonstrates Canvas rendering, game-loop architecture, state management, replay playback, localStorage persistence, and UI design using plain JavaScript.
 
 ---
 
@@ -20,10 +20,20 @@ https://your-live-demo-link.com
 
 ## Preview
 
+### Main Menu
 ![Main Menu](screenshots/menu.png)
+
+### Gameplay
 ![Gameplay](screenshots/gameplay.png)
-![Replay System](screenshots/replay.png)
+
+### Map Editor
 ![Map Editor](screenshots/map-editor.png)
+
+### Replay System
+![Replay System](screenshots/replay.png)
+
+### Leaderboard
+![Leaderboard](screenshots/leaderboard.png)
 
 ---
 
