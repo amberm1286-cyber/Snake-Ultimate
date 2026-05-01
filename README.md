@@ -75,3 +75,25 @@ The demo system can:
 - Display rotating tutorial tips
 
 This makes the game more understandable for first-time visitors and improves the project’s presentation value.
+
+---
+
+## Replay System
+The replay system records supported gameplay runs and allows the player to watch them again later.
+
+Replay support currently includes:
+- Classic Mode
+- Time Attack 60s
+- Time Attack 120s
+
+The replay system uses two layers:
+
+1. Input Recording
+
+Direction changes are saved with timestamps.
+
+2. Game-State Snapshots
+
+The game also saves state frames during the run, making replay playback stable even when random food, hazards, or timing are involved.
+
+This makes the replay system more reliable than a simple input-only replay system.
