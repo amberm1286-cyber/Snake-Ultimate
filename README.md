@@ -10,10 +10,8 @@ Snake Ultimate expands the classic Snake concept into a desktop-focused arcade g
 
 ## Live Demo
 
-Add your live demo link here:
-
 ```txt
-https://your-live-demo-link.com
+https://amberm1286-cyber.github.io/Snake-Ultimate/
 ```
 
 ---
@@ -183,8 +181,9 @@ Snake-Ultimate/
 ├── screenshots/
 │   ├── menu.png
 │   ├── gameplay.png
+│   ├── map-editor.png
 │   ├── replay.png
-│   └── map-editor.png
+    └── leaderboard.png
 └── README.md
 ```
 
