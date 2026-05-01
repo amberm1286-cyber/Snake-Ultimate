@@ -218,3 +218,26 @@ Handles the full visual design, including layout, animations, buttons, panels, o
 - LocalStorage
 - AI Demo / Auto Pilot
 - Map Editor connection
+
+---
+
+## Controls
+
+### Single Player
+
+#### Use: 
+```txt
+Arrows Keys
+```
+#### or:
+```txt
+WASD
+```
+
+### Multiplayer 
+
+```txt
+Player 1: WASD
+Player 2: Arrow Keys
+```
+
