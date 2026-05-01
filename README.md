@@ -57,12 +57,12 @@ The traditional Snake experience with modern visuals, scoring, obstacles, food t
 A pressure-based mode where survival time affects difficulty and bonus score.
 
 ### Time Attack Mode
-Race against the clock in:
+#### Race against the clock in:
 - Time Attack 60s
 - Time Attack 120s
 
 ### Multiplayer Mode
-Two-player local multiplayer:
+#### Two-player local multiplayer:
 - Player 1 uses WASD
 - Player 2 uses Arrow Keys
 
@@ -77,7 +77,7 @@ Chapter-based progression with increasing difficulty and special objectives.
 ## AI Demo / Tutorial Mode
 Snake Ultimate includes an AI-powered demonstration mode designed to help visitors understand the game before playing.
 
-The demo system can:
+#### The demo system can:
 - Auto-play the snake
 - Demonstrate movement
 - Show food collection
@@ -91,7 +91,7 @@ This makes the game more understandable for first-time visitors and improves the
 ## Replay System
 The replay system records supported gameplay runs and allows the player to watch them again later.
 
-Replay support currently includes:
+#### Replay support currently includes:
 - Classic Mode
 - Time Attack 60s
 - Time Attack 120s
@@ -139,7 +139,7 @@ The built-in Map Editor allows players to create custom obstacle layouts.
 - Save slots
 - Best score tracking
 
-All progress is stored locally using localStorage.
+All progress is stored locally using `localStorage`.
 
 ---
 
@@ -175,7 +175,7 @@ No external game engine was used.
 ## Project Structure
 
 ```txt
-snake-ultimate/
+Snake-Ultimate/
 ├── index.html
 ├── styles.css
 ├── main.js
@@ -194,15 +194,15 @@ snake-ultimate/
 
 The project is organized into separate files for clarity and maintainability.
 
-### index.html
+### `index.html`
 
 Contains the game layout, panels, overlays, buttons, menu screens, settings UI, and Canvas element.
 
-### styles.css
+### `styles.css`
 
 Handles the full visual design, including layout, animations, buttons, panels, overlays, desktop UI, and experimental mobile styling.
 
-### snake-logic.js
+### `snake-logic.js`
 
 #### Contains reusable core game logic such as:
 
@@ -214,7 +214,7 @@ Handles the full visual design, including layout, animations, buttons, panels, o
 - Hazard logic
 - Board state creation
 
-### main.js
+### `main.js`
 
 #### Controls the main application layer, including:
 
@@ -257,7 +257,7 @@ Player 2: Arrow Keys
 
 ## Local Storage
 
-#### Snake Ultimate uses localStorage for:
+#### Snake Ultimate uses `localStorage` for:
 
 - Best scores
 - Save slots
@@ -338,6 +338,12 @@ Mobile version: Experimental support added
 Replay system: Classic and Time Attack supported
 AI Demo: Complete
 Map Editor: Complete
+
+---
+
+## What This Project Demonstrates
+
+This project demonstrates practical JavaScript game development concepts including Canvas rendering, game-loop design, collision detection, state management, localStorage persistence, UI state synchronization, and replay playback.
 
 ---
 
