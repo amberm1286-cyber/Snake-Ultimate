@@ -174,6 +174,7 @@ No external game engine was used.
 
 ## Project Structure
 
+```txt
 snake-ultimate/
 ├── index.html
 ├── styles.css
@@ -185,6 +186,7 @@ snake-ultimate/
 │   ├── replay.png
 │   └── map-editor.png
 └── README.md
+```
 
 ---
 
