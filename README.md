@@ -37,3 +37,27 @@ https://your-live-demo-link.com
 - Local leaderboard and save-slot system
 - Premium desktop-first UI with animated panels and polished visual feedback
 - Experimental mobile support
+
+## Game Modes
+
+### Classic Mode
+The traditional Snake experience with modern visuals, scoring, obstacles, food types, and difficulty scaling.
+
+### Survival Mode
+A pressure-based mode where survival time affects difficulty and bonus score.
+
+### Time Attack Mode
+Race against the clock in:
+- Time Attack 60s
+- Time Attack 120s
+
+### Multiplayer Mode
+Two-player local multiplayer:
+- Player 1 uses WASD
+- Player 2 uses Arrow Keys
+
+### Boss Challenge
+A boss-focused mode with boss movement, attack patterns, warning visuals, and challenge-based gameplay.
+
+### Campaign Mode
+Chapter-based progression with increasing difficulty and special objectives.
