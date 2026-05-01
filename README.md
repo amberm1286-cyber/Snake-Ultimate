@@ -86,13 +86,13 @@ Replay support currently includes:
 - Time Attack 60s
 - Time Attack 120s
 
-The replay system uses two layers:
+### The replay system uses two layers:
 
-1. Input Recording
+#### 1. Input Recording
 
 Direction changes are saved with timestamps.
 
-2. Game-State Snapshots
+#### 2. Game-State Snapshots
 
 The game also saves state frames during the run, making replay playback stable even when random food, hazards, or timing are involved.
 
