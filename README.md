@@ -97,3 +97,36 @@ Direction changes are saved with timestamps.
 The game also saves state frames during the run, making replay playback stable even when random food, hazards, or timing are involved.
 
 This makes the replay system more reliable than a simple input-only replay system.
+
+---
+
+## Map Editor
+
+The built-in Map Editor allows players to create custom obstacle layouts.
+
+#### Map Editor features:
+
+- Draw custom wall layouts
+- Erase placed cells
+- Save custom maps
+- Load saved maps
+- Delete maps
+- Export map codes
+- Import map codes
+- Start custom-map runs
+
+---
+
+## Progression Systems
+
+#### Snake Ultimate includes several progression features:
+
+- Achievements
+- Missions
+- Campaign chapters
+- Unlockable skins
+- Local leaderboard
+- Save slots
+- Best score tracking
+
+All progress is stored locally using localStorage.
