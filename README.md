@@ -130,3 +130,91 @@ The built-in Map Editor allows players to create custom obstacle layouts.
 - Best score tracking
 
 All progress is stored locally using localStorage.
+
+---
+
+## UI / UX Features
+
+#### The game includes a premium dark arcade-style interface with:
+
+- Animated buttons
+- Game Over popup
+- Combo badge
+- Run information panel
+- Score and best-score cards
+- Mission and campaign panels
+- Drawer-style extra tools
+- Responsive experiments for mobile devices
+
+The current version is primarily optimized for desktop gameplay.
+
+---
+
+## Tech Stack
+- HTML5
+- CSS3
+- JavaScript
+- HTML5 Canvas
+- LocalStorage
+- Modular JavaScript architecture
+
+No external game engine was used.
+
+---
+
+## Project Structure
+
+snake-ultimate/
+├── index.html
+├── styles.css
+├── main.js
+├── snake-logic.js
+├── screenshots/
+│   ├── menu.png
+│   ├── gameplay.png
+│   ├── replay.png
+│   └── map-editor.png
+└── README.md
+
+---
+
+## Architecture Overview
+
+The project is organized into separate files for clarity and maintainability.
+
+### index.html
+
+Contains the game layout, panels, overlays, buttons, menu screens, settings UI, and Canvas element.
+
+### styles.css
+
+Handles the full visual design, including layout, animations, buttons, panels, overlays, desktop UI, and experimental mobile styling.
+
+### snake-logic.js
+
+#### Contains reusable core game logic such as:
+
+- Snake movement rules
+- Direction validation
+- Food placement
+- Collision detection
+- Obstacle generation
+- Hazard logic
+- Board state creation
+
+### main.js
+
+#### Controls the main application layer, including:
+
+- Game loop
+- Canvas rendering
+- UI events
+- Game modes
+- Replay recording and playback
+- Achievements
+- Missions
+- Campaign logic
+- Leaderboard
+- LocalStorage
+- AI Demo / Auto Pilot
+- Map Editor connection
