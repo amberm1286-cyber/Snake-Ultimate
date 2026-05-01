@@ -61,3 +61,17 @@ A boss-focused mode with boss movement, attack patterns, warning visuals, and ch
 
 ### Campaign Mode
 Chapter-based progression with increasing difficulty and special objectives.
+
+---
+
+## AI Demo / Tutorial Mode
+Snake Ultimate includes an AI-powered demonstration mode designed to help visitors understand the game before playing.
+
+The demo system can:
+- Auto-play the snake
+- Demonstrate movement
+- Show food collection
+- Avoid danger
+- Display rotating tutorial tips
+
+This makes the game more understandable for first-time visitors and improves the project’s presentation value.
