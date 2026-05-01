@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Snake Ultimate</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <div class="brand">
+        <h1 class="game-title" aria-label="Snake Ultimate">
+          <span class="snake-letter snake-letter--lead">S</span>
+          <span class="snake-letter">n</span>
+          <span class="snake-letter">a</span>
+          <span class="snake-letter">k</span>
+          <span class="snake-letter snake-letter--tail">e</span>
+        </h1>
+        <p class="subtitle">Ultimate Edition</p>
+      </div>
+
+      <div class="stats">
+        <div class="stat-card">
+          <span>Score</span>
+          <strong id="score">0</strong>
+        </div>
+        <div class="stat-card">
+          <span>Best</span>
+          <strong id="best">0</strong>
+        </div>
+      </div>
+    </header>
+
+    <div class="skin-row">
+      <div id="skin-hint" class="skin-hint">Unlocked.</div>
+    </div>
+
+    <section class="game-layout">
+      <aside class="side-panel side-panel--left">
+        <div class="panel-card">
+          <div class="panel-card__title">Game</div>
+
+          <label class="field">
+            <span>Skin</span>
+            <select id="theme-select" title="Hover a locked skin to see how to unlock it">
+              <option value="emerald">Emerald</option>
+              <option value="neon">Neon</option>
+              <option value="gold">Gold</option>
+              <option value="shadow">Shadow</option>
+              <option value="frost">Frost</option>
+              <option value="inferno">Inferno</option>
+              <option value="void">Void</option>
+              <option value="crystal">Crystal</option>
+            </select>
+          </label>
+
+          <label class="field">
+            <span>Difficulty</span>
+            <select id="difficulty-select">
+              <option value="easy">Easy</option>
+              <option value="normal">Normal</option>
+              <option value="hard">Hard</option>
+            </select>
+          </label>
+
+          <label class="field">
+            <span>Board</span>
+            <select id="board-select">
+              <option value="16">16×16</option>
+              <option value="18">18×18</option>
+              <option value="20">20×20</option>
+              <option value="22">22×22</option>
+            </select>
+          </label>
+
+          <label class="field">
+            <span>Save Slot</span>
+            <select id="slot-select">
+              <option value="slot1">Slot 1</option>
+              <option value="slot2">Slot 2</option>
+              <option value="slot3">Slot 3</option>
+            </select>
+          </label>
+
+          <label class="field">
+            <span>Mode</span>
+            <select id="mode-select">
+              <option value="classic">Classic</option>
+              <option value="survival">Survival</option>
+              <option value="timeAttack60">Time Attack 60s</option>
+              <option value="timeAttack120">Time Attack 120s</option>
+              <option value="multiplayer">Multiplayer</option>
+              <option value="bossChallenge">Boss Challenge</option>
+            </select>
+          </label>
+
+          <label class="toggle">
+            <input id="obstacle-toggle" type="checkbox" />
+            <span>Obstacles</span>
+          </label>
+
+          <label class="toggle">
+            <input id="daily-toggle" type="checkbox" />
+            <span>Daily</span>
+          </label>
+
+          <label class="toggle demo-toggle" id="ai-toggle-wrapper">
+            <input id="ai-toggle" type="checkbox" />
+            <span>
+               Auto Pilot
+              <small>Let the snake play automatically during a run.</small>
+            </span>
+          </label>
+        </div>
+
+        <div class="panel-card">
+          <div class="panel-card__title">Run Info</div>
+          <div class="hud-stack">
+            <div class="hud-chip">
+              <span>Size</span>
+              <strong id="size">3</strong>
+            </div>
+
+            <div class="hud-chip">
+              <span>Level</span>
+              <strong id="level-label">1</strong>
+            </div>
+
+            <div class="hud-chip">
+              <span>Speed</span>
+              <strong id="difficulty-stage-label">Slow</strong>
+            </div>
+
+            <div class="hud-chip">
+              <span>Time</span>
+              <strong id="survival-time-label">0:00</strong>
+            </div>
+
+            <div class="hud-chip">
+              <span>Pressure</span>
+              <strong id="pressure-label">Standard</strong>
+            </div>
+
+            <div class="hud-chip">
+              <span>Bonus</span>
+              <strong id="survival-bonus-label">+0</strong>
+            </div>
+
+            <div class="hud-chip">
+              <span>Chapter</span>
+              <strong id="chapter-label">Free</strong>
+            </div>
+
+            <div class="hud-chip">
+              <span>Danger</span>
+              <strong id="hazard-label">Safe</strong>
+            </div>
+
+          </div>
+        </div>
+      </aside>
+
+      <section class="board-column">
+        <div class="board-panel">
+          <div id="demo-banner" class="demo-banner hidden">
+            Watch Demo: The snake is auto-playing to demonstrate movement, food collection, and danger avoidance.
+          </div>
+
+          <div class="board-stage">
+            <div class="mobile-game-hud" aria-label="Mobile game HUD">
+              <div class="mobile-score-card">
+                <span>Score</span>
+                <strong id="mobile-score-label">0</strong>
+              </div>
+
+              <div class="mobile-score-card">
+                <span>Best</span>
+                <strong id="mobile-best-label">0</strong>
+              </div>
+
+              <button id="mobile-pause-btn" class="mobile-hud-btn" type="button" aria-label="Pause game">Ⅱ</button>
+
+              <button id="mobile-menu-btn" class="mobile-hud-btn" type="button" aria-label="Open mobile game menu">
+                ☰
+              </button>
+            </div>
+
+            <canvas id="game" width="720" height="720"></canvas>
+
+            <div class="mobile-mode-strip">
+              <span id="mobile-combo-label">Combo x1</span>
+              <strong id="mobile-mode-label">Classic</strong>
+            </div>
+
+            <div id="mobile-multiplayer-card" class="mobile-multiplayer-card hidden">
+              <span id="mobile-multiplayer-label">P1 0 · P2 0</span>
+            </div>
+
+            <div class="mobile-control-pad" aria-label="Mobile direction controls">
+              <button id="mobile-dpad-up" type="button">↑</button>
+              <div class="mobile-control-row">
+                <button id="mobile-dpad-left" type="button">←</button>
+                <button id="mobile-dpad-down" type="button">↓</button>
+                <button id="mobile-dpad-right" type="button">→</button>
+              </div>
+            </div>
+
+            <div id="combo-badge" class="combo-badge combo-badge--board">Combo x1</div>
+            <div id="overlay" class="overlay show" aria-live="polite">
+              <div id="overlay-card" class="overlay-card">
+                <section id="panel-menu" class="panel is-active">
+                  <h2 class="overlay-title">Snake Ultimate</h2>
+                  <p class="overlay-text">
+                    Missions, campaign chapters, boss mode, moving hazards, custom maps, share codes, imported sprites, and stronger skins.
+                  </p>
+                  <div class="panel-actions">
+                    <button id="menu-play-btn" type="button">Play</button>
+                    <button id="menu-demo-btn" type="button">Watch Demo</button>
+                    <button id="menu-replay-btn" type="button" title="Replay available for Classic and Time Attack runs.">
+                      Watch Replay
+                    </button>
+                    <button id="menu-campaign-btn" type="button">Campaign</button>
+                    <button id="menu-missions-btn" type="button">Missions</button>
+                    <button id="menu-editor-btn" type="button">Map Editor</button>
+                    <button id="menu-settings-btn" type="button">Settings</button>
+                    <button id="menu-help-btn" type="button">Help</button>
+                  </div>
+                </section>
+
+                <section id="panel-status" class="panel">
+                  <h2 id="overlay-title" class="overlay-title">Ready</h2>
+                  <p id="overlay-text" class="overlay-text">Press Play or any arrow key to start.</p>
+                  <div class="panel-actions">
+                    <button id="status-primary-btn" type="button">Play</button>
+                    <button id="status-secondary-btn" type="button">Menu</button>
+                    <button id="status-replay-btn" type="button" class="hidden" title="Replay available for Classic and Time Attack runs.">
+                      Watch Replay
+                    </button>
+                    <button id="new-match-btn" type="button" class="hidden">New Match</button>
+                  </div>
+                </section>
+
+                <section id="panel-mobile-menu" class="panel">
+                  <h2 class="overlay-title">Game Menu</h2>
+                  <p class="overlay-text">
+                    Pause, restart, change modes, open missions, or adjust mobile settings.
+                  </p>
+
+                  <div class="mobile-menu-grid">
+                    <button id="mobile-resume-btn" type="button">Resume</button>
+                    <button id="mobile-restart-btn" type="button">Restart</button>
+                    <button id="mobile-settings-btn" type="button">Settings</button>
+                    <button id="mobile-modes-btn" type="button">Modes</button>
+                    <button id="mobile-missions-btn" type="button">Missions</button>
+                    <button id="mobile-campaign-btn" type="button">Campaign</button>
+                    <button id="mobile-help-btn" type="button">Help</button>
+                    <button id="mobile-more-btn" type="button">More</button>
+                  </div>
+                </section>
+
+                <section id="panel-mobile-settings" class="panel">
+                  <h2 class="overlay-title">Mobile Settings</h2>
+                  <p class="overlay-text">
+                    Change the same gameplay settings you use on desktop.
+                  </p>
+
+                  <div class="mobile-settings-list">
+                    <label class="mobile-setting-row">
+                      <span>Skin</span>
+                      <select id="mobile-theme-select">
+                        <option value="emerald">Emerald</option>
+                        <option value="neon">Neon</option>
+                        <option value="gold">Gold</option>
+                        <option value="shadow">Shadow</option>
+                        <option value="frost">Frost</option>
+                        <option value="inferno">Inferno</option>
+                        <option value="void">Void</option>
+                        <option value="crystal">Crystal</option>
+                      </select>
+                    </label>
+
+                    <label class="mobile-setting-row">
+                      <span>Difficulty</span>
+                      <select id="mobile-difficulty-select">
+                        <option value="easy">Easy</option>
+                        <option value="normal">Normal</option>
+                        <option value="hard">Hard</option>
+                      </select>
+                    </label>
+
+                    <label class="mobile-setting-row">
+                      <span>Board</span>
+                      <select id="mobile-board-select">
+                        <option value="16">16×16</option>
+                        <option value="18">18×18</option>
+                        <option value="20">20×20</option>
+                        <option value="22">22×22</option>
+                      </select>
+                    </label>
+
+                    <label class="mobile-setting-row">
+                      <span>Save Slot</span>
+                      <select id="mobile-slot-select">
+                        <option value="slot1">Slot 1</option>
+                        <option value="slot2">Slot 2</option>
+                        <option value="slot3">Slot 3</option>
+                      </select>
+                    </label>
+                  </div>
+
+                  <div class="panel-actions">
+                    <button id="mobile-settings-back-btn" type="button">Back</button>
+                    <button id="mobile-settings-resume-btn" type="button">Resume</button>
+                  </div>
+                </section>
+
+                <section id="panel-mobile-run-info" class="panel">
+                  <h2 class="overlay-title">Run Info</h2>
+                  <p class="overlay-text">
+                    Current run details without crowding the board.
+                  </p>
+
+                  <div class="mobile-run-info-grid">
+                    <div><span>Size</span><strong id="mobile-run-size">3</strong></div>
+                    <div><span>Level</span><strong id="mobile-run-level">1</strong></div>
+                    <div><span>Speed</span><strong id="mobile-run-speed">Slow</strong></div>
+                    <div><span>Time</span><strong id="mobile-run-time">0:00</strong></div>
+                    <div><span>Pressure</span><strong id="mobile-run-pressure">Standard</strong></div>
+                    <div><span>Bonus</span><strong id="mobile-run-bonus">+0</strong></div>
+                    <div><span>Chapter</span><strong id="mobile-run-chapter">Free</strong></div>
+                    <div><span>Danger</span><strong id="mobile-run-danger">Safe</strong></div>
+                  </div>
+
+                  <div class="panel-actions">
+                    <button id="mobile-run-back-btn" type="button">Back</button>
+                  </div>
+                </section>
+
+                <section id="panel-settings" class="panel">
+                  <h2 class="overlay-title">Settings</h2>
+                  <p class="overlay-text">The main game settings are now placed in the left panel for a cleaner layout.</p>
+                  <div class="panel-actions">
+                    <button id="settings-back-btn" type="button">Back</button>
+                  </div>
+                </section>
+
+                <section id="panel-help" class="panel">
+                  <h2 class="overlay-title">Help</h2>
+                  <div class="overlay-list">
+                    <span>Arrow keys / WASD = move</span>
+                    <span>Space = pause</span>
+                    <span>Enter = restart after game over</span>
+                    <span>PgUp / ] = next skin</span>
+                    <span>PgDn / [ = previous skin</span>
+                    <span>F = fullscreen</span>
+                    <span>Hazards = moving danger tiles</span>
+                    <span>Map Editor = build your own wall layout</span>
+                  </div>
+                  <div class="panel-actions">
+                    <button id="help-back-btn" type="button">Back</button>
+                  </div>
+                </section>
+
+                <section id="panel-missions" class="panel">
+                  <h2 class="overlay-title">Missions</h2>
+                  <div id="missions-list" class="mission-list"></div>
+                  <div class="panel-actions">
+                    <button id="missions-back-btn" type="button">Back</button>
+                  </div>
+                </section>
+
+                <section id="panel-campaign" class="panel">
+                  <h2 class="overlay-title">Campaign</h2>
+                  <div id="campaign-list" class="mission-list"></div>
+                  <div class="panel-actions">
+                    <button id="campaign-start-btn" type="button">Start Campaign</button>
+                    <button id="campaign-back-btn" type="button">Back</button>
+                  </div>
+                </section>
+
+                <section id="panel-editor" class="panel">
+                  <h2 class="overlay-title">Map Editor</h2>
+
+                  <div class="editor-form">
+                    <label class="editor-field">
+                      <span>Map Name</span>
+                      <input
+                        id="map-name-input"
+                        type="text"
+                        maxlength="32"
+                        placeholder="Example: Spiral Trap"
+                      />
+                    </label>
+
+                    <label class="editor-field">
+                      <span>Saved Maps</span>
+                      <select id="map-select">
+                        <option value="">No saved maps</option>
+                      </select>
+                    </label>
+                  </div>
+
+                  <div class="panel-actions">
+                    <button id="editor-draw-btn" type="button">Create / Draw Map</button>
+                    <button id="editor-done-btn" type="button">Done Editing</button>
+                  </div>
+
+                  <div class="panel-actions">
+                    <button id="editor-save-btn" type="button">Save Map</button>
+                    <button id="editor-load-btn" type="button">Load Map</button>
+                    <button id="editor-delete-btn" type="button">Delete Map</button>
+                  </div>
+
+                  <label class="editor-field editor-field--stack">
+                    <span>Map Code</span>
+                    <textarea
+                      id="map-code-box"
+                      class="share-code-box"
+                      rows="4"
+                      spellcheck="false"
+                      placeholder="Use Export Map to generate a map-only code, or paste one here and import it."
+                    ></textarea>
+                  </label>
+
+                  <div class="panel-actions">
+                    <button id="editor-export-btn" type="button">Export Map</button>
+                    <button id="editor-import-btn" type="button">Import Map</button>
+                  </div>
+
+                  <div class="panel-actions">
+                    <button id="editor-clear-btn" type="button">Clear Map</button>
+                    <button id="editor-start-btn" type="button">Start Custom Map</button>
+                    <button id="editor-back-btn" type="button">Back</button>
+                  </div>
+                </section>
+              </div>
+            </div>
+
+            <button id="editor-return-btn" class="editor-return-btn" type="button">Editor</button>
+
+            <div id="achievement-toast" class="achievement-toast" aria-live="polite" aria-atomic="true">
+              <div class="achievement-toast__title">Achievement Unlocked</div>
+              <div id="achievement-toast-text" class="achievement-toast__text">First 10 Apples</div>
+            </div>
+
+            <div id="level-toast" class="level-toast" aria-live="polite" aria-atomic="true">
+              <div class="level-toast__title">Level Up</div>
+              <div id="level-toast-text" class="level-toast__text">Level 2 · Faster</div>
+            </div>
+          </div>
+        </div>
+
+        <section class="bottom-controls">
+          <button id="pause-btn" type="button">Pause</button>
+          <button id="restart-btn" type="button">Restart</button>
+          <button id="fullscreen-btn" type="button">Fullscreen</button>
+          <button id="share-btn" type="button">Share Code</button>
+          <button id="more-btn" type="button">More</button>
+        </section>
+
+        <section class="dpad" aria-label="On-screen controls">
+          <div class="dpad-grid">
+            <button class="up" data-dir="UP" type="button">↑</button>
+            <button class="left" data-dir="LEFT" type="button">←</button>
+            <button class="down" data-dir="DOWN" type="button">↓</button>
+            <button class="right" data-dir="RIGHT" type="button">→</button>
+          </div>
+        </section>
+      </section>
+
+      <aside class="side-panel side-panel--right">
+        <div class="panel-card">
+          <div class="panel-card__title">Quick Panels</div>
+          <div class="panel-actions panel-actions--stack">
+            <button id="quick-missions-btn" type="button">Missions</button>
+            <button id="quick-campaign-btn" type="button">Campaign</button>
+            <button id="quick-help-btn" type="button">Help</button>
+          </div>
+        </div>
+
+        <div class="panel-card mode-card">
+          <div class="panel-card__title">Current Mode</div>
+          <div class="mode-pill">
+            <strong id="mode-label">Classic</strong>
+          </div>
+        </div>
+
+        <div id="multiplayer-card" class="panel-card multiplayer-card">
+          <div class="panel-card__title">Players</div>
+          <div class="round-label" id="round-label">Round 1</div>
+
+          <div class="match-score" id="match-score-label">Match: P1 0 · P2 0</div>
+
+          <div class="round-history" id="round-history">
+            <div class="round-history-empty">No rounds played yet</div>
+          </div>
+
+          <div class="player-score-row player-score-row--p1">
+            <span>Player 1 · WASD</span>
+            <strong id="p1-score-label">0</strong>
+          </div>
+
+          <div class="player-score-row player-score-row--p2">
+            <span>Player 2 · Arrows</span>
+            <strong id="p2-score-label">0</strong>
+          </div>
+
+          <div class="multiplayer-help">
+            Player 1 uses WASD · Player 2 uses Arrow Keys
+          </div>
+        </div>
+
+        <div id="drawer" class="drawer drawer--side">
+          <div class="drawer-header">
+            <h3>More</h3>
+            <button id="close-drawer-btn" type="button">Close</button>
+          </div>
+
+          <div class="drawer-grid">
+            <div class="panel-card">
+              <div class="panel-card__title">Achievements</div>
+              <div id="achievements-list" class="pill-list"></div>
+            </div>
+
+            <div class="panel-card">
+              <div class="panel-card__title">Power-up</div>
+              <div id="powerup-status" class="powerup-status">None</div>
+            </div>
+
+            <div class="panel-card">
+              <div class="panel-card__title">Leaderboard</div>
+              <div id="leaderboard-list" class="pill-list"></div>
+            </div>
+
+            <div class="panel-card">
+              <div class="panel-card__title">Challenge Code</div>
+              <textarea
+                id="share-code-box"
+                class="share-code-box"
+                rows="6"
+                spellcheck="false"
+                placeholder="Press “Share Code” to generate a code, or paste one here to import."
+              ></textarea>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <script src="./snake-logic.js"></script>
+  <script src="./main.js"></script>
+</body>
+</html>
